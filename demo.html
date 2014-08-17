@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Slidr Demo</title>
+	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	<!-- slidr css file -->
+	<link href="slidr/slidr.css" rel="stylesheet" />
+	<!-- syntax highlighter css file -->
+	<link href="slidr/third_party/highlight/styles/obsidian.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="slidr_container">
+	  <section class="slide center">
+		<h1 class="big">Slidr</h1>
+		<h3>Very simple and light-weight jQuery plugin to create HTML Presentations!</h3>
+		
+		<small>Use arrow key <kbd>-></kbd> to go to next slide</small>
+	  </section>
+
+	  <section class="slide">
+		<h2>Features</h2>
+		<ul>
+		  <li>Very simple without fancy stuff such as animations, nesting, overview, etc</li>
+		  <li>Only 2kb (compressed) in size on its own</li>
+		  <li>You can apply your own themes through CSS</li>
+		  <li>Code Syntax Highlighting</li>
+		  <li>Support for Full Screen mode</li>
+		  <li>Markdown Support</li>
+		</ul>
+	  </section>
+	  
+	  <section class="slide">
+		<h2>How to Navigate</h2>
+		<ul>
+		  <li>Use right arrow key <kbd>-></kbd> to go to next slide</li>
+		  <li>Use left arrow key <kbd><-</kbd> to go to previous slide</li>
+		  <li>Use <kbd>F</kbd> key to enter full screen mode</li>
+		  <li>Use <kbd>Esc</kbd> key to exit full screen mode</li>
+		</ul>
+	  </section>	  
+
+	  <section class="slide">
+		<h2>How to Use</h2>
+		<p>Step 1: Include Slidr CSS file in <mark>&lt;head&gt;</mark> tag:</p>
+		<pre><code class="html">&lt;link href="slidr/slidr.css" rel="stylesheet" /&gt;</code></pre>
+		
+		<p>Step 2: Include jQuery and Slidr JavaScript file just before <mark>&lt;body/&gt;</mark> tag and call it:</p>
+		<pre><code class="html">&lt;script src="slidr/third_party/jquery.js"&gt;&lt;/script&gt;
+&lt;script src="slidr/slidr.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // "background" option sets presentation background color
+  $('.slide').slidr({"background" : "#eee"});
+&lt;/script&gt;</code></pre>
+		
+		<p>Step 3: Create HTML markup for slides with container class being <mark>slidr_container</mark> like: </p>
+		
+		<pre><code class="html">&lt;div class="slidr_container"&gt;
+  &lt;section class="slide start"&gt;
+    &lt;h1 class="big"&gt;My Awesome Presentation&lt;/h1&gt;
+    &lt;p&gt;This is going to be fun!&lt;/p&gt;
+  &lt;/section&gt;
+  
+  &lt;section class="slide"&gt;
+    &lt;h2&gt;My Awesome Presentation&lt;/h2&gt;
+  
+    &lt;ul&gt;
+      &lt;li&gt;Topic One&lt;/li&gt;
+      &lt;li&gt;Topic Two&lt;/li&gt;
+      &lt;li&gt;Topic Three&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+  
+  &lt;section class="slide"&gt;
+    &lt;h2&gt;The End!&lt;/h2&gt;
+    &lt;p&gt;Big Thanks!&lt;/p&gt;
+  &lt;/section&gt;  
+&lt;/div&gt;</code></pre>
+		
+		<p>Here we have given a class name of <mark>slide</mark> to each slide but you can also use some other name.</p>
+		<strong><mark>That's it ;-)</mark></strong>
+		
+	  </section>
+	  
+	  <section class="slide">
+		<h2>Code Support</h2>
+		
+		<p>First include <mark>hightlight.js</mark> file just before <mark>&lt;body/&gt;</mark> tag and call it:</p>
+		<pre><code class="html">&lt;script src="slidr/third_party/highlight/highlight.pack.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // enable syntax highlighting
+  hljs.initHighlightingOnLoad();
+&lt;/script&gt;</code></pre>
+
+	<p>Now simply wrap your code snippets in between:</p>
+	<pre><code class="html">&lt;pre>&lt;code class="LANG-NAME"&gt;...&lt;/code&gt;&lt;/pre&gt;</code></pre>
+
+	<p>PHP Code Snippet Example</p>	
+
+	<pre><code class="html">&lt;pre&gt;&lt;code class="php"&gt;
+class HelloWorld
+{
+    public static function sayHello() {
+        echo "Hello World!";
+    }
+}
+
+echo HelloWorld::sayHello();
+&lt;/code&gt;&lt;/pre&gt;</code></pre>
+
+	<p>It will output like:</p>
+	
+	<pre><code class="php">class HelloWorld
+{
+    public static function sayHello() {
+        echo "Hello World!";
+    }
+}
+
+echo HelloWorld::sayHello();</code></pre>
+
+	  </section>
+	  
+	  <section class="slide">
+		<h2>Code Support - Alternative Way</h2>
+		<p>If you are using Markdown (<a target="_blank" href="demo.html#slide-6">See Next Slide</a>) and as you probably already know, you can also add code snippets by indenting them with 8 spaces or 2 tabs:</p>
+		<pre><code class="html">        class HelloWorld
+        {
+            public static function sayHello() {
+               echo "Hello World!";
+            }
+        }
+		
+        echo HelloWorld::sayHello();</code></pre>
+		
+		<p>Will output as (with language auto-detected):</p>
+		
+		<pre><code class="php">class HelloWorld
+{
+  public static function sayHello() {
+    echo "Hello World!";
+  }
+}
+
+echo HelloWorld::sayHello();</code></pre>		
+	  </section>	  
+	  
+	  <section class="slide">
+		<h2>Markdown Support</h2>
+		
+		<p>First include <mark>markdown-js</mark> file just before <mark>&lt;body/&gt;</mark> tag and call it:</p>
+		<pre><code class="html">&lt;script src="slidr/third_party/markdown/markdown.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  $('.markdown').each(function(){
+     var html = markdown.toHTML($(this).html());		
+     $(this).html(html);
+  });
+&lt;/script&gt;</code></pre>		
+		
+		<p>Now simply apply the class <mark>markdown</mark> to any element and write Markdown within it:</p>
+		
+		<p>Below markup:</p>
+<pre><code class="html">&lt;p class="markdown"&gt;
+  # Some Heading
+  ---
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+  - List Item One
+  - List Item Two
+  - List Item Three
+&lt;p/&gt;</code></pre>
+		
+		<p>Generates following HTML output:</p>
+
+		<p class="markdown">
+# Some Heading
+---
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+- List Item One
+- List Item Two
+- List Item Three		
+		</p>
+		
+		<br>
+		<p><mark>Note:</mark> Do not indent Markdown code or else it will be treated as Code snippet unless you want it!</p>
+		
+	  </section>	   
+	  
+	  
+	  <section class="slide">
+		<h2>The End</h2>
+		<p>Thanks To:</p>
+		<ul>
+		  <li><a target="_blank" href="http://jquery.com">jQuery</a> (for awesome JavaScript library)</li>
+		  <li><a target="_blank" href="https://highlightjs.org">highlight.js</a> (for code syntax highlighting)</li>
+		  <li><a target="_blank" href="https://github.com/evilstreak/markdown-js">markdown-js</a> (for Markdown support)</li>
+		</ul>
+	  </section>
+	  
+</div>
+
+<script src="slidr/third_party/jquery-1.8.3.min.js"></script>
+<script src="slidr/slidr.js"></script>
+<script>
+	$('.slide').slidr({"background" : "#F0F0F0", "fontsize": "5em"});
+</script>
+
+<script src="slidr/third_party/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="slidr/third_party/markdown/markdown.js"></script>
+<script>
+	$('.markdown').each(function(){
+		var html = markdown.toHTML($(this).html());		
+		$(this).html(html);
+	});
+</script>
+
+</body>
+</html>
