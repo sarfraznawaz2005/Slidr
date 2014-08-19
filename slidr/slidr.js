@@ -17,15 +17,12 @@
             // override custom options with default ones
             var o = $.extend(defaults, options);
 
-            var $this = $(this);
-			
-			// total slides
+            var $this = $(this);			
 			var totalSlides = $this.length;
 
             // get current supplied selector
             var identifier = $this.selector;
 
-            // main slidr container element
             var slideContainerClass = 'slidr_container';
 
             // class applied to each slide
@@ -40,33 +37,30 @@
             // current slide class
             var currentClass = '__slidrCurrentSlideItem__';
 
-            // body element
             var $body = $('body');
 
-            // do it for every element that matches selector
             this.each(function () {
-                // make slide width and height equal to visible window size
                 $(this).css({
+					"overflow": "auto",
                     "background": o.background,
                     "height": $(window).height()
                 });
             });
 
-			// apply general font size to slides
 			$('.' + slideContainerClass).css('font-size', o.fontsize);
 			
             // apply background color to body as well
             $body.css({
+				"overflow": "auto",
 				"background": o.background,
 				"padding" : 0,
 				"margin" : 0
 			});
 			
-
             // hide all slides initially
             $this.hide();
 			
-			// hide all slide parts initially
+			// hide all slide fragments initially
 			$('.' + slideFragmentClass).hide();
 
             // show the first slide only initially
@@ -99,9 +93,8 @@
 
 			$self.showNextSlide = function () {
 				showSlide('next');
-			};
+			};		
 			
-			// get the slide to go to
 			var showSlide = function (direction) {
 				var $currentSlide = $('.' + currentClass);
 				var totalFragments = $currentSlide.find('.' + slideFragmentClass).length;
@@ -116,66 +109,81 @@
 					var $slide = $currentSlide[direction](identifier + ':first');
 					var index = $slide.index();
 
-					// append hash to url
 					if (index != '-1') {
-						document.location.href = '#slide-' + index;
-						
-						// update counter
-						$counter.text((index + 1) + '/' + totalSlides);
+						document.location.href = '#slide-' + (index + 1);
+						updateCounter(index);
 					}
-					
-					// go to next slide now
-					if ($slide.length) {
-						// remove current class from any slide that has it
-						$(identifier).removeClass(currentClass).hide();
-
-						// now show next slide
-						$slide.addClass(currentClass);
-						$slide.addClass(slideClass);
-						$slide.fadeIn();
-					}				
 				}
 			};			
-			
-            var setupSlides = function () {		
-                var goToSlide = function (slideNumber) {
+		
+			var goToSlide = function (slideNumber) {
+				if (slideNumber > 0) {
+					var $slide = $(identifier).eq((slideNumber - 1));
 
-                    if (typeof slideNumber === 'undefined') {
-                        // go to url hash slide if needed
-                        var hash = document.location.hash;
-                        slideNumber = hash.match(/\d+/);
-						
-						if (slideNumber) {
-							$counter.text((parseInt(slideNumber, 10) + 1) + '/' + totalSlides);						
-						}
-						else {
-							$counter.text('1/' + totalSlides);
-						}						
-                    }
+					// remove current class from any slide that has it
+					$(identifier).removeClass(currentClass).hide();
 
-                    if (slideNumber > -1) {
-                        var $slide = $(identifier).eq(slideNumber);
-
-                        // remove current class from any slide that has it
-                        $(identifier).removeClass(currentClass).hide();
-
-                        // now show next slide
-                        $slide.addClass(currentClass);
-                        $slide.addClass(slideClass);
-                        $slide.fadeIn();
-                    }
+					// now show next slide
+					$slide.addClass(currentClass);
+					$slide.addClass(slideClass);
+					$slide.fadeIn();
 					
-                }();			
-
-            }();
+					// see to change document title
+					if ($slide.find('h1').length) {
+						document.title = $slide.find('h1').text();
+					}
+					else if ($slide.find('h2').length) {
+						document.title = $slide.find('h2').text();
+					}
+					else if ($slide.find('h3').length) {
+						document.title = $slide.find('h3').text();
+					}					
+				}
+				
+				updateCounter(slideNumber);
+			};
 			
-			// bind keys strokes to slides
+			var goToSlideNumber = function() {
+				var slideNumber = prompt("Please Enter Slide Number");
+				
+				if (slideNumber <= totalSlides && slideNumber > 0) {
+					updateCounter(--slideNumber);
+					document.location.href = '#slide-' + (+slideNumber + 1);
+				}				
+			};
+
+			var updateCounter = function(slideNumber) {
+				if (slideNumber > -1) {
+					$counter.text((+slideNumber + 1) + '/' + totalSlides);
+				}
+				else {
+					$counter.text('1/' + totalSlides);
+				}
+			};
+			
+			// auto-execute on page load
+			(function(){
+				var hash = document.location.hash;
+				slideNumber = hash.match(/\d+/);
+				document.location.href = '#slide-' + (slideNumber ? slideNumber : 1);				
+				
+				goToSlide(slideNumber ? slideNumber : 0);
+				updateCounter(--slideNumber);				
+			})();
+			
+			$(window).on('hashchange', function(){
+				// go to url hash slide if needed
+				var hash = document.location.hash;
+				slideNumber = hash.match(/\d+/);
+				goToSlide(slideNumber ? slideNumber : 0);
+				updateCounter(--slideNumber);
+			});
+			
 			$body.keyup(function (event) {
 				var keyF = 70;
+				var keyG = 71;
 				var keyLeft = 37;
 				var keyRight = 39;
-				var keyUp = 38;
-				var keyDown = 40;
 
 				switch (event.keyCode) {
 					case keyLeft :
@@ -186,6 +194,9 @@
 						break;
 					case keyF:
 						toggleFullScreen();
+						break;
+					case keyG:
+						goToSlideNumber();
 						break;
 				}
 			});
@@ -223,8 +234,6 @@
 				}
 
 			};
-
-			//console.log(window);
 			
             // maintain chainability
             return this;

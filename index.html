@@ -15,14 +15,13 @@
 		<h1 class="big">Slidr</h1>
 		<h3>Very simple and light-weight jQuery plugin to create HTML Presentations!</h3>
 		
-		<small>Use arrow key <kbd>-></kbd> to go to next slide</small>
+		<small>Swipe left or use arrow key <kbd>-></kbd> to go to next slide</small>
 	  </section>
 
 	  <section class="slide">
 		<h2>Features</h2>
 		<ul>
 		  <li>Very simple without fancy stuff such as animations, overview, etc</li>
-		  <li>Only 3kb (compressed) in size on its own</li>
 		  <li>You can apply your own themes through CSS</li>
 		  <li>Code Syntax Highlighting</li>
 		  <li>Support for Full Screen mode</li>
@@ -37,8 +36,9 @@
 		<ul>
 		  <li>Use right arrow key <kbd>-></kbd> to go to next slide</li>
 		  <li>Use left arrow key <kbd><-</kbd> to go to previous slide</li>
+		  <li>Use <kbd>G</kbd> key to go to specific slide</li>
 		  <li>Use <kbd>F</kbd> key to enter full screen mode</li>
-		  <li>Use <kbd>Esc</kbd> key to exit full screen mode</li>
+		  <li>Use <kbd>Esc</kbd> key to exit full screen mode</li>		  
 		</ul>
 	  </section>	  
 
@@ -258,7 +258,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 
 <!-- REQUIRED - include jQuery and Slidr -->
 <script src="slidr/third_party/jquery-1.8.3.min.js"></script>
-<script src="slidr/slidr.min.js"></script>
+<script src="slidr/slidr.js"></script>
 <script>
 	// create Slidr variable to be optionally used below for mobile swipe effect
 	var Slidr = $('.slide').slidr({"background": "#eee", "fontsize": "1.1em"});
