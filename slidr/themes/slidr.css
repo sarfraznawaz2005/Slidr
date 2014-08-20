@@ -327,10 +327,6 @@ li > ol, li > ul {
   margin-bottom: inherit;
 }
 
-.slidr_container {
-  color: #444;
-}
-
 .slide {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -399,7 +395,9 @@ a:hover, a:focus {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 1.1em;
   background: #fff;
+  color:#444;
 }
+
 .slidr_container > .slide {
   padding: 10px 20px;
 }
@@ -435,49 +433,59 @@ a:hover, a:focus {
 
 :-webkit-full-screen {
   /* properties */
-  background: transparent;
+  background: inherit;
   overflow: auto;
+  width: 100%;
+  height:100%;  
 }
 
 :-moz-full-screen {
   /* properties */
-  background: transparent;
+  background: inherit;
   overflow: auto;
+  width: 100%;
+  height:100%;  
 }
 
 :-ms-fullscreen {
   /* properties */
-  background: transparent;
+  background: inherit;
   overflow: auto;
+  width: 100%;
+  height:100%;  
 }
 
 :full-screen { /*pre-spec */
   /* properties */
-  background: transparent;
+  background: inherit;
   overflow: auto;
+  width: 100%;
+  height:100%;  
 }
 
 :fullscreen { /* spec */
   /* properties */
-  background: transparent;
+  background: inherit;
   overflow: auto;
+  width: 100%;
+  height:100%;  
 }
 
 /* deeper elements */
 :-webkit-full-screen video {
   width: 100%;
   height: 100%;
-  background: transparent;
+  background: inherit;
 }
 
 /* styling the backdrop*/
 ::backdrop {
   /* properties */
-  background: transparent;
+  
 }
 ::-ms-backdrop {
   /* properties */
-  background: transparent;
+  
 }
 
 /* for fullscreen end */

@@ -40,7 +40,6 @@
 
             this.each(function() {
                 $(this).css({
-                    "overflow": "auto",
                     "background": o.background,
                     "height": $(window).height()
                 });
