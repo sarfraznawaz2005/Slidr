@@ -3,6 +3,7 @@
 Very simple and light-weight jQuery plugin to create HTML Presentations!
 
  - Very simple without fancy stuff such as animations, overview, etc
+ - Small footprint
  - You can apply your own themes through CSS
  - Code Syntax Highlighting
  - Support for Full Screen mode
